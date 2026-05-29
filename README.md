@@ -4,7 +4,7 @@
 A fully functional, web-based replica of the classic 2048 puzzle game. Built using Object-Oriented JavaScript, the project features a strict separation of concerns between the core game logic (state management, matrix transformations) and the DOM UI rendering.
 
 ## Demo
-[Live Preview](https://IvanovvvIhor.github.io/js_2048_game/)
+[Live Preview](https://ivanovvvihor.github.io/2048Game/)
 
 ## Technologies Used
 * HTML5

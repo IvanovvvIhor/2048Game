@@ -1,6 +1,7 @@
-/* eslint-disable no-shadow */
+/* eslint-disable max-len */
 'use strict';
-import Game from '../modules/Game.class.js';
+
+const Game = require('../modules/Game.class.js');
 
 const game = new Game();
 
@@ -54,9 +55,7 @@ function render() {
       const cell = field.rows[i].cells[j];
 
       cell.textContent = value > 0 ? value : '';
-
-      cell.className =
-        value > 0 ? `field-cell field-cell--${value}` : 'field-cell';
+      cell.className = value > 0 ? `field-cell field-cell--${value}` : 'field-cell';
     });
   });
 

@@ -1,101 +1,90 @@
-class Game {
-  #field;
-  #score;
-  #status;
+/* eslint-disable max-len */
+'use strict';
 
+class Game {
   constructor(initialState) {
-    this.#field = initialState
-      ? this.#cloneField(initialState)
-      : this.#createEmptyBoard();
-    this.#score = 0;
-    this.#status = 'idle';
+    this._field = initialState
+      ? this._cloneField(initialState)
+      : this._createEmptyBoard();
+    this._score = 0;
+    this._status = 'idle';
   }
 
   moveLeft() {
-    this.#makeMove(() => {
+    this._makeMove(() => {
       for (let i = 0; i < 4; i++) {
-        this.#field[i] = this.#processRow(this.#field[i]);
+        this._field[i] = this._processRow(this._field[i]);
       }
     });
   }
 
   moveRight() {
-    this.#makeMove(() => {
+    this._makeMove(() => {
       for (let i = 0; i < 4; i++) {
-        const reverseRow = [...this.#field[i]].reverse();
+        const reverseRow = [...this._field[i]].reverse();
 
-        this.#field[i] = this.#processRow(reverseRow).reverse();
+        this._field[i] = this._processRow(reverseRow).reverse();
       }
     });
   }
 
   moveUp() {
-    this.#makeMove(() => {
+    this._makeMove(() => {
       for (let j = 0; j < 4; j++) {
-        const column = [
-          this.#field[0][j],
-          this.#field[1][j],
-          this.#field[2][j],
-          this.#field[3][j],
-        ];
-        const processed = this.#processRow(column);
+        const column = [this._field[0][j], this._field[1][j], this._field[2][j], this._field[3][j]];
+        const processed = this._processRow(column);
 
         for (let i = 0; i < 4; i++) {
-          this.#field[i][j] = processed[i];
+          this._field[i][j] = processed[i];
         }
       }
     });
   }
 
   moveDown() {
-    this.#makeMove(() => {
+    this._makeMove(() => {
       for (let j = 0; j < 4; j++) {
-        const column = [
-          this.#field[3][j],
-          this.#field[2][j],
-          this.#field[1][j],
-          this.#field[0][j],
-        ];
-        const processed = this.#processRow(column).reverse();
+        const column = [this._field[3][j], this._field[2][j], this._field[1][j], this._field[0][j]];
+        const processed = this._processRow(column).reverse();
 
         for (let i = 0; i < 4; i++) {
-          this.#field[i][j] = processed[i];
+          this._field[i][j] = processed[i];
         }
       }
     });
   }
 
   getScore() {
-    return this.#score;
+    return this._score;
   }
 
   getState() {
-    return this.#cloneField(this.#field);
+    return this._cloneField(this._field);
   }
 
   getStatus() {
-    return this.#status;
+    return this._status;
   }
 
   start() {
-    this.#status = 'playing';
-    this.#addRandomTile();
-    this.#addRandomTile();
+    this._status = 'playing';
+    this._addRandomTile();
+    this._addRandomTile();
   }
 
   restart() {
-    this.#score = 0;
-    this.#status = 'playing';
-    this.#field = this.#createEmptyBoard();
-    this.#addRandomTile();
-    this.#addRandomTile();
+    this._score = 0;
+    this._status = 'playing';
+    this._field = this._createEmptyBoard();
+    this._addRandomTile();
+    this._addRandomTile();
   }
 
-  #cloneField(field) {
+  _cloneField(field) {
     return field.map((row) => [...row]);
   }
 
-  #createEmptyBoard() {
+  _createEmptyBoard() {
     return [
       [0, 0, 0, 0],
       [0, 0, 0, 0],
@@ -104,12 +93,12 @@ class Game {
     ];
   }
 
-  #addRandomTile() {
+  _addRandomTile() {
     const emptyCells = [];
 
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 4; j++) {
-        if (this.#field[i][j] === 0) {
+        if (this._field[i][j] === 0) {
           emptyCells.push([i, j]);
         }
       }
@@ -119,13 +108,12 @@ class Game {
       return;
     }
 
-    const [row, col] =
-      emptyCells[Math.floor(Math.random() * emptyCells.length)];
+    const [row, col] = emptyCells[Math.floor(Math.random() * emptyCells.length)];
 
-    this.#field[row][col] = Math.random() < 0.9 ? 2 : 4;
+    this._field[row][col] = Math.random() < 0.9 ? 2 : 4;
   }
 
-  #fieldsEqual(a, b) {
+  _fieldsEqual(a, b) {
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 4; j++) {
         if (a[i][j] !== b[i][j]) {
@@ -137,13 +125,13 @@ class Game {
     return true;
   }
 
-  #processRow(row) {
+  _processRow(row) {
     const filtered = row.filter((val) => val !== 0);
 
     for (let i = 0; i < filtered.length - 1; i++) {
       if (filtered[i] === filtered[i + 1]) {
         filtered[i] *= 2;
-        this.#score += filtered[i];
+        this._score += filtered[i];
         filtered.splice(i + 1, 1);
       }
     }
@@ -155,8 +143,8 @@ class Game {
     return filtered;
   }
 
-  #makeMove(callback) {
-    if (this.#status !== 'playing') {
+  _makeMove(callback) {
+    if (this._status !== 'playing') {
       return;
     }
 
@@ -164,40 +152,40 @@ class Game {
 
     callback();
 
-    if (!this.#fieldsEqual(oldField, this.#field)) {
-      this.#addRandomTile();
-      this.#updateStatus();
+    if (!this._fieldsEqual(oldField, this._field)) {
+      this._addRandomTile();
+      this._updateStatus();
     }
   }
 
-  #updateStatus() {
+  _updateStatus() {
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 4; j++) {
-        if (this.#field[i][j] === 2048) {
-          this.#status = 'win';
+        if (this._field[i][j] === 2048) {
+          this._status = 'win';
 
           return;
         }
       }
     }
 
-    this.#status = this.#hasMove() ? 'playing' : 'lose';
+    this._status = this._hasMove() ? 'playing' : 'lose';
   }
 
-  #hasMove() {
+  _hasMove() {
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 4; j++) {
-        const current = this.#field[i][j];
+        const current = this._field[i][j];
 
         if (current === 0) {
           return true;
         }
 
-        if (j < 3 && current === this.#field[i][j + 1]) {
+        if (j < 3 && current === this._field[i][j + 1]) {
           return true;
         }
 
-        if (i < 3 && current === this.#field[i + 1][j]) {
+        if (i < 3 && current === this._field[i + 1][j]) {
           return true;
         }
       }
@@ -207,4 +195,4 @@ class Game {
   }
 }
 
-export default Game;
+module.exports = Game;
