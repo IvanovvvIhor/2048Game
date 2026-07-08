@@ -38,7 +38,7 @@ To install the project and run it locally, follow these steps:
 1. Clone the repository:
 
 ```bash
-   git clone [https://github.com/IvanovvvIhor/js_2048_game.git](https://github.com/IvanovvvIhor/js_2048_game.git)
+   git clone [https://github.com/IvanovvvIhor/2048Game.git](https://github.com/IvanovvvIhor/2048Game.git)
 
 
 ```
@@ -46,7 +46,7 @@ To install the project and run it locally, follow these steps:
 2. Navigate to the project directory:
 
 ```bash
-   cd js_2048_game
+   cd 2048Game
 
 
 ```
