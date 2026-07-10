@@ -42,7 +42,7 @@ To install the project and run it locally, follow these steps:
 1. Clone the repository:
    
 ```bash
-git clone [https://github.com/IvanovvvIhor/2048Game.git](https://github.com/IvanovvvIhor/2048Game.git)
+git clone https://github.com/IvanovvvIhor/2048Game.git
 
 ```
 
