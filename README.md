@@ -4,6 +4,10 @@
 
 Welcome to the **JS2048** project, a fully functional, web-based replica of the classic 2048 puzzle game. Built using Object-Oriented JavaScript, this project features a strict separation of concerns between the core game logic (state management, matrix transformations) and the DOM UI rendering. The game is developed using modern web technologies and aims to offer a seamless user experience.
 
+## Demo
+
+- [DEMO LINK](https://ivanovvvihor.github.io/2048Game/)
+
 ### Key Features
 
 - **OOP Architecture**: The core logic is encapsulated within a `Game` class utilizing private fields (`#field`, `#score`, `#status`) to prevent unintended state mutations from the UI layer.
@@ -36,44 +40,36 @@ To run this project, you will need:
 To install the project and run it locally, follow these steps:
 
 1. Clone the repository:
-
+   
 ```bash
-   git clone [https://github.com/IvanovvvIhor/2048Game.git](https://github.com/IvanovvvIhor/2048Game.git)
-
+git clone [https://github.com/IvanovvvIhor/2048Game.git](https://github.com/IvanovvvIhor/2048Game.git)
 
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-   cd 2048Game
-
+cd 2048Game
 
 ```
 
 3. Install dependencies:
 
 ```bash
-   npm install
-
+npm install
 
 ```
 
 4. Start the local development server:
 
 ```bash
-   npm start
-
+npm start
 
 ```
 
 ## Usage
 
 After starting the project, it will be available at `http://localhost:8080` (or the port specified by your build tool). You can use this project to play the game and interact with interface elements via keyboard navigation.
-
-## Example
-
-* [DEMO LINK](https://ivanovvvihor.github.io/2048Game/)
 
 ## Technologies Used
 
